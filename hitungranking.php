@@ -55,11 +55,11 @@ if (isset($_POST['skor'])) {
 
     foreach ($kalkulasi_norm as $id => $norm) {
 
-        $skor_c1 = round($norm['c1'] * $bobot1, 3);
-        $skor_c2 = round($norm['c2'] * $bobot2, 3);
-        $skor_c3 = round($norm['c3'] * $bobot3, 3);
+        $skor_c1 = round($norm['c1'] * $bobot1, 4);
+        $skor_c2 = round($norm['c2'] * $bobot2, 4);
+        $skor_c3 = round($norm['c3'] * $bobot3, 4);
 
-        $total_skor = round($skor_c1 + $skor_c2 + $skor_c3, 3);
+        $total_skor = round($skor_c1 + $skor_c2 + $skor_c3, 4);
 
         $kalkulasi_skor[$id] = [
             'sc1' => $skor_c1,
