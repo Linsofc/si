@@ -2,19 +2,22 @@
 session_start();
 if (!isset($_SESSION['totalskor'])) {
     echo "<script>alert('Anda belum melakukan perhitungan Pada data!!'); window.location='./hitungranking.php'</script>";
+    exit;
 }
+
 $skorakhir = $_SESSION['totalskor'];
-$rank = 1;
+arsort($skorakhir);
 
-
+$rank = 0; 
+$row_number = 1;
+$prevScore = null;
 ?>
 
 <head>
     <link rel="stylesheet" href="./css/table.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/navbar.css">
-
 </head>
 
 <body>
@@ -31,12 +34,21 @@ $rank = 1;
                 <th>Skor</th>
             </tr>
             <?php foreach ($skorakhir as $key => $val): ?>
+                <?php
+                if ($prevScore === null || $val < $prevScore) {
+                    $rank = $row_number;
+                }
+                ?>
+                
                 <tr>
-                   <td><?php echo $rank ?></td>
-                   <td><?php echo $key ?></td>
-                   <td><?php echo $val ?></td>
-                </tr>
-                <?php $rank++ ?>
+                    <td><?php echo $rank ?></td>
+                    <td><?php echo $key ?></td> <td><?php echo $val ?></td> </tr>
+                
+                <?php 
+                $prevScore = $val; 
+                $row_number++; 
+                ?>
             <?php endforeach ?>
         </table>
     </div>
+</body>
