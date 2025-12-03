@@ -26,18 +26,22 @@ $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <button class="btn btn-primary mb-3" onclick="window.location.href='CRUD/tambah.php'">Tambah Data</button>
         <table border="1" cellpadding="15px" class="table table-light table-hover table-bordered border-primary">
             <tr class="table-dark">
-                <th>ID</th>
+                <th>No</th>
                 <th>Nama</th>
                 <th>C1</th>
                 <th>C2</th>
                 <th>C3</th>
                 <th>Action</th>
             </tr>
-            <?php foreach ($data as $d): ?>
+            <?php
+            $no = 1;
+            foreach ($data as $d): ?>
                 <tr>
-                    <?php foreach ($d as $key => $val): ?>
-                        <td><?php echo $val ?></td>
-                    <?php endforeach ?>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $d["lokasi"] ?></td>
+                    <td><?php echo $d["c1_produksi"] ?></td>
+                    <td><?php echo $d["c2_rtp"] ?></td>
+                    <td><?php echo $d["c3_kapal"] ?></td>
                      <td>
                          <button class="btn btn-primary" onclick="window.location.href='CRUD/edit.php?id=<?php echo $d['id'] ?>'">Edit</button>
                          <button class="btn btn-danger" onclick="window.location.href='CRUD/delete.php?id=<?php echo $d['id'] ?>'">Delete</button>
