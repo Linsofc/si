@@ -37,7 +37,7 @@ if (isset($_POST['update'])) {
 
 <body>
     <?php require_once "../include/navbar.php" ?>
-    <h2 style="text-align: center;">Tambah Data</h2>
+    <h2 style="text-align: center;">Edit Data</h2>
     <div class="container-fluid" style="display: flex; justify-content:center;">
         <div class="card">
             <div class="card-body">
